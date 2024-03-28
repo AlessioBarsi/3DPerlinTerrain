@@ -16,11 +16,16 @@
     </script>
 </head>
 <body>
+  <ul>
+    {% for v in vertices %}
+      <li>id:{{v.id}} : {{ v.x_coord }} {{ v.y_coord }} {{ v.z_coord }}</li>
+    {% endfor %}
+  </ul>
     <script>
       let x = "Testing Param"
       localStorage.setItem("Test_Param", x)
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
-<p>Set the seed, octaves and terrain size, then click the Generate! button</p>
+  <p>Set the seed, octaves and terrain size, then click the Generate! button</p>
 </body>
 </html>
