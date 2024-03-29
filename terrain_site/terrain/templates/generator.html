@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Terrain Generator</title>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <script type="importmap">
         {
           "imports": {
@@ -22,7 +23,19 @@
     {% endfor %}
   </ul>
     <script>
-      let x = "Testing Param"
+      let x = "Testing local Param passed with local storage"
+      x = "{{test_var}}"
+
+
+      let my_array = []
+
+      {% for v in vertices %}
+        my_array.push({{ v.z_coord }})
+      {% endfor %}
+
+      console.log(my_array)
+      //let my_array = [1, 2, 3]
+      localStorage.setItem("Array_Param", my_array)
       localStorage.setItem("Test_Param", x)
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
