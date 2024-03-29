@@ -1,18 +1,8 @@
 import * as THREE from 'three';
 
 console.log("Testing generator_js.js")
-const parametro = localStorage.getItem("Test_Param")
-console.log(parametro)
 
-const array_parametro_str = localStorage.getItem("Array_Param")
-console.log("String array:", array_parametro_str)
-
-const array_parametro = array_parametro_str.split(',');
-
-array_parametro.forEach(function(number, index) {
-    console.log("Element at index " + index + " is: " + number);
-});
-
+//console.log(coords_matrix)
 
 //Setting up the scene and camera
 const scene = new THREE.Scene();

@@ -27,16 +27,23 @@
       x = "{{test_var}}"
 
 
-      let my_array = []
-
+      //Get the coordinates from the vertex models and assign them to a matrix
+      let coords_matrix = []
+      //Each row of the matrix consists of one vertex
+      let matrix_row = []
       {% for v in vertices %}
-        my_array.push({{ v.z_coord }})
+        //Add the coordinates to the current row
+        matrix_row.push( {{ v.x_coord }} )
+        matrix_row.push( {{ v.y_coord }} )
+        matrix_row.push( {{ v.z_coord }} )
+        //Add the row to the matrix
+        coords_matrix.push(matrix_row)
+        //Clear the row in order to assign new values
+        matrix_row = [];
       {% endfor %}
 
-      console.log(my_array)
-      //let my_array = [1, 2, 3]
-      localStorage.setItem("Array_Param", my_array)
-      localStorage.setItem("Test_Param", x)
+      //console.log(coords_matrix)
+
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
   <p>Set the seed, octaves and terrain size, then click the Generate! button</p>
