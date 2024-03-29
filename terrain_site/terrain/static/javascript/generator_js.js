@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 
 console.log("Testing generator_js.js")
-
 //console.log(coords_matrix)
 
 //Setting up the scene and camera
@@ -18,18 +17,18 @@ const cube_material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 
 let array_cubes = []
 //Adding an array of 10 cubes
-for (let i = 0; i < 9; i ++) {
+for (let i = 0; i < coords_matrix.length; i ++) {
     //Creating the cube mesh from the geometry and material
     const new_cube = new THREE.Mesh(cube_geometry, cube_material)
     //Adjusting the position
-    new_cube.position.x = 1 + i
-    new_cube.position.y = 1
-    new_cube.position.z = 1
+    new_cube.position.x = 1 + coords_matrix[i][0]*5
+    new_cube.position.y = 1 + coords_matrix[i][1]*5
+    new_cube.position.z = 1 + coords_matrix[i][2]*5
     //Adding the cube to the scene and the array
     scene.add( new_cube )
     array_cubes[i] = new_cube
 }
-camera.position.z = 5;
+camera.position.z = 10;
 
 //Buffer Geometry code example that draws a square mesh
 const geometry = new THREE.BufferGeometry();
@@ -55,12 +54,6 @@ scene.add( mesh )
 
 //Rendering the scene
 function animate() {
-
-    //Rotating all cubes in the array
-    array_cubes.forEach(c => {
-        c.rotation.x += 0.02
-        c.rotation.y += 0.02
-    });
 
 	requestAnimationFrame( animate );
 	renderer.render( scene, camera );
