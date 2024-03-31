@@ -23,10 +23,6 @@
     {% endfor %}
   </ul>
     <script>
-      let x = "Testing local Param passed with local storage"
-      x = "{{test_var}}"
-
-
       //Get the coordinates from the vertex models and assign them to a matrix
       let coords_matrix = []
       //Each row of the matrix consists of one vertex
@@ -41,8 +37,6 @@
         //Clear the row in order to assign new values
         matrix_row = [];
       {% endfor %}
-
-      //console.log(coords_matrix)
 
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
