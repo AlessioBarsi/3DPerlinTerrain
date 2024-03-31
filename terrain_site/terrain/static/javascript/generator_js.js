@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 console.log("Testing generator_js.js")
 //console.log(coords_matrix)
@@ -7,9 +8,16 @@ console.log("Testing generator_js.js")
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
+//Setting up the renderer and adding it to the html page
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
+
+//Setting up the camera controls
+const controls = new OrbitControls( camera, renderer.domElement )
+//controls.update() must be called after any manual changes to the camera's transform
+camera.position.set( 0, 20, 100 );
+controls.update();
 
 //Instantiating the geometry and material that each cube will have
 const cube_geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -28,7 +36,7 @@ for (let i = 0; i < coords_matrix.length; i ++) {
     scene.add( new_cube )
     array_cubes[i] = new_cube
 }
-camera.position.z = 10;
+camera.position.z = 30;
 
 //Buffer Geometry code example that draws a square mesh
 const geometry = new THREE.BufferGeometry();
@@ -56,6 +64,7 @@ scene.add( mesh )
 function animate() {
 
 	requestAnimationFrame( animate );
+    controls.update();
 	renderer.render( scene, camera );
 }
 animate();
