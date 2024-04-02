@@ -22,7 +22,7 @@ def generator(request):
         import math
         for j in range(int(math.sqrt(VERTEX_COUNT))):
             for i in range(int(math.sqrt(VERTEX_COUNT))):
-                newVertex = Vertex.objects.create(x_coord = 1+i, y_coord = 1+j, z_coord = noise( ((i*j)+1)/100 ) )
+                newVertex = Vertex.objects.create(x_coord = 1+i, y_coord = 1+j, z_coord = noise( ((i*j)+1)/200 ) )
 
     context = {
         'vertices' : Vertex.objects.all().values(),
