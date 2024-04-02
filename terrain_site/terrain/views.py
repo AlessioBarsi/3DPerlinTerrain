@@ -8,8 +8,16 @@ def index(request):
 
 def generator(request):
 
+
+    #Get perlin_noise and terrain settings from html form
+    size = 100
+
+    if request.method == 'POST':
+        form = request.POST
+        input_var = form['input_size']
+
     #It should be a perfect cube
-    VERTEX_COUNT = 1000
+    VERTEX_COUNT = 100
     #Generate a sample of vertices with perlin noise
     #Delete old vertices first
     vertices = Vertex.objects.all().values()    
@@ -22,7 +30,7 @@ def generator(request):
         import math
         for j in range(int(math.sqrt(VERTEX_COUNT))):
             for i in range(int(math.sqrt(VERTEX_COUNT))):
-                newVertex = Vertex.objects.create(x_coord = 1+i, y_coord = 1+j, z_coord = noise( ((i*j)+1)/200 ) )
+                newVertex = Vertex.objects.create(x_coord = 1+i, y_coord = 1+j, z_coord = noise( ((i*j)+1)/size ) )
 
     context = {
         'vertices' : Vertex.objects.all().values(),

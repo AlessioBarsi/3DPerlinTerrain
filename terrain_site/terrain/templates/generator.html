@@ -17,8 +17,16 @@
     </script>
 </head>
 <body>
-    Range:
-    <input type="range" id="input_size" min="100" max="500" step="50">
+    
+    <!-- Form for the Perlin Noise attributes and terrain size -->
+    <form action="generator" method="POST">
+      {% csrf_token %}
+      Range: 
+      <input type="range" name="input_size" value="200" min="100" max="500" step="50">
+      <input type="submit" name="input_submit" value="Generate Terrain">
+    </form>
+
+
     <script>
       //Get the coordinates from the vertex models and assign them to a matrix
       let coords_matrix = []
