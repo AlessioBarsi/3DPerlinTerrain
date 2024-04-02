@@ -21,10 +21,12 @@
     <!-- Form for the Perlin Noise attributes and terrain size -->
     <form action="generator" method="POST">
       {% csrf_token %}
-      Range: 
+      Perlin Noise Size:
       <input type="range" name="input_size" value="200" min="100" max="500" step="50">
+      Terrain Size (Cube/Mesh count):
+      <input type="number" name="input_terrain_size" value="100" min="100" max="1000" step="100">
       <input type="submit" name="input_submit" value="Generate Terrain">
-    </form>
+    </form><br>
 
 
     <script>
@@ -45,6 +47,5 @@
 
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
-  <p>Set the seed, octaves and terrain size, then click the Generate! button</p>
 </body>
 </html>

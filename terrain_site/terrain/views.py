@@ -11,13 +11,13 @@ def generator(request):
 
     #Get perlin_noise and terrain settings from html form
     size = 100
-
+    VERTEX_COUNT = 100
     if request.method == 'POST':
         form = request.POST
-        input_var = form['input_size']
-
+        size = int(form['input_size'])
+        VERTEX_COUNT = int(form['input_terrain_size'])
+        
     #It should be a perfect cube
-    VERTEX_COUNT = 100
     #Generate a sample of vertices with perlin noise
     #Delete old vertices first
     vertices = Vertex.objects.all().values()    
