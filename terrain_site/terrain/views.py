@@ -9,7 +9,7 @@ def index(request):
 def generator(request):
 
     #It should be a perfect cube
-    VERTEX_COUNT = 81
+    VERTEX_COUNT = 1000
     #Generate a sample of vertices with perlin noise
     #Delete old vertices first
     vertices = Vertex.objects.all().values()    

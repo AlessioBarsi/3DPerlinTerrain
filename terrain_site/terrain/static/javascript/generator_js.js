@@ -39,7 +39,8 @@ for (let i = 0; i < coords_matrix.length; i ++) {
     //3js system is Y=UP ==> position.y takes Z
     new_cube.position.x = coords_matrix[i][0]
     new_cube.position.z = coords_matrix[i][1]
-    new_cube.position.y = coords_matrix[i][2]
+    //Coordinate affected by perlin noise
+    new_cube.position.y = coords_matrix[i][2]*2
     //new_cube.position.z = 1
     
     //Adding the cube to the scene and the array

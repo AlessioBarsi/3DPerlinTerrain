@@ -17,11 +17,6 @@
     </script>
 </head>
 <body>
-  <ul>
-    {% for v in vertices %}
-      <li>id:{{v.id}} : {{ v.x_coord }} {{ v.y_coord }} {{ v.z_coord }}</li>
-    {% endfor %}
-  </ul>
     <script>
       //Get the coordinates from the vertex models and assign them to a matrix
       let coords_matrix = []
