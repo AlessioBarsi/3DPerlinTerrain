@@ -7,18 +7,14 @@ def main():
 
     import os
     os.system('cls')
+    import math
+    for x in range(1, height):
+        for y in range(1, height):
+            #Linear distance
+            distance = math.sqrt((height/2 - x)**2 + (height/2 - y)**2)
+            print(round(distance,2), " ", end="")
+        print()
 
-
-    #grid = [ [noise([x / width * scale, y / height * scale]) for y in range(height) ] for x in range(width)]
-    #print(grid)
-    LACUNARITY = 2
-    PERSISTENCE = 0.5
-    from perlin_noise import PerlinNoise
-    noise =  PerlinNoise(octaves=10, seed=1)
-
-    print('Seed: ', noise.seed)
-    print('Octaves: ', noise.octaves)
-    print('Lacunarity: ', noise.lacunarity)
 
 def getPerlinNoise():
     return 0
@@ -26,6 +22,15 @@ def getPerlinNoise():
 def getPerlinNoise(octaves, seed):
     from perlin_noise import PerlinNoise
     return PerlinNoise(octaves, seed)
+
+def getHeightFunction(f, x, y, max_size):
+    import math
+    if f == 'f':
+        return 1
+    else: 
+        return 0
+    
+
 
 if __name__ == "__main__":
     main()
