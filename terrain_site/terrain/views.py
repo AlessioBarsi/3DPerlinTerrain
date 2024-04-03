@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Vertex
+import math
 
 def index(request):
     return HttpResponse("This is the index page of the terrain app")
@@ -10,31 +11,31 @@ def generator(request):
 
 
     #Get perlin_noise and terrain settings from html form
-    size = 100
+    SCALE = 0.1
+    OCTAVES = 8
     VERTEX_COUNT = 100
     if request.method == 'POST':
         form = request.POST
-        size = int(form['input_size'])
+        SCALE = float(form['input_scale'])
         VERTEX_COUNT = int(form['input_terrain_size'])
         
-    #It should be a perfect cube
-    #Generate a sample of vertices with perlin noise
-    #Delete old vertices first
+    #Delete existing vertices first
     vertices = Vertex.objects.all().values()    
     for v in Vertex.objects.all():
         v.delete()
-    #Generate a set of new ones
+    #Generate a set of new vertices
     if len(vertices) == 0:
         from .functions import getPerlinNoise
-        noise = getPerlinNoise(10, 1)
-        import math
-        for j in range(int(math.sqrt(VERTEX_COUNT))):
-            for i in range(int(math.sqrt(VERTEX_COUNT))):
-                newVertex = Vertex.objects.create(x_coord = 1+i, y_coord = 1+j, z_coord = noise( ((i*j)+1)/size ) )
+        noise = getPerlinNoise(OCTAVES, 1)
+        
+        for x in range(int(math.sqrt(VERTEX_COUNT))):
+            for y in range(int(math.sqrt(VERTEX_COUNT))):
+                newVertex = Vertex.objects.create(x_coord = 1+y,
+                                                y_coord = 1+x,
+                                                z_coord = noise([x / math.sqrt(VERTEX_COUNT) * SCALE, y / math.sqrt(VERTEX_COUNT) * SCALE]) )
 
     context = {
         'vertices' : Vertex.objects.all().values(),
-        'test_var' : 'Testing Var Passed from context',
     }
     template = loader.get_template('generator.html')
     return HttpResponse(template.render(context=context, request=request))
