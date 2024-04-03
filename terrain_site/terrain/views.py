@@ -12,12 +12,13 @@ def generator(request):
 
     #Get perlin_noise and terrain settings from html form
     SCALE = 0.1
-    OCTAVES = 8
-    VERTEX_COUNT = 100
+    OCTAVES = 30
+    VERTEX_COUNT = 1000
     if request.method == 'POST':
         form = request.POST
         SCALE = float(form['input_scale'])
         VERTEX_COUNT = int(form['input_terrain_size'])
+        OCTAVES = float(form['input_octaves'])
         
     #Delete existing vertices first
     vertices = Vertex.objects.all().values()    
