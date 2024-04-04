@@ -36,13 +36,20 @@ def getHeightFunction(f, x, y, height, max_height):
     match f:
         #Linear function, y = x -> The terrain has a gentle increase in height the closer it is to the center
         case 'linear':
+            FACTOR = 3
             value = 1 - (distance / (height / 2))
-            return value * 3
+            return value * FACTOR
         #Exponential function, y = e^x -> The terrain has a steep increase the closer it is to the center
         case 'exponential':
-            value = 1 - (distance / (height/2))
+            FACTOR = 5
+            value = math.exp(-FACTOR * distance / (height / 2))*2
+            return value
+        #Logarithmic function, y = log(x) -> The terrain has a steep increase towards its edges and then a more linear increase
+        case 'logarithmic':
+            value = math.log(distance / (height / 2), 2)
+            return value
         #Costant function, y = 0 -> The terrain is flat
-        case 'costant':
+        case _:
             return 0
 
 if __name__ == "__main__":

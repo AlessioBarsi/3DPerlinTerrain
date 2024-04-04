@@ -14,8 +14,9 @@ def generator(request):
     SCALE = 0.1
     OCTAVES = 30
     VERTEX_COUNT = 1000
-    HEIGHT_CURVE = 'Linear'
-    
+    HEIGHT_CURVE = 'Logarithmic'
+    MAX_HEIGHT = 1
+
     if request.method == 'POST':
         form = request.POST
         SCALE = float(form['input_scale'])
