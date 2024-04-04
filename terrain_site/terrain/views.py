@@ -14,7 +14,7 @@ def generator(request):
     SCALE = 0.1
     OCTAVES = 30
     VERTEX_COUNT = 1000
-    HEIGHT_CURVE = 'Logarithmic'
+    HEIGHT_CURVE = 'Linear'
     MAX_HEIGHT = 1
 
     if request.method == 'POST':
@@ -22,6 +22,7 @@ def generator(request):
         SCALE = float(form['input_scale'])
         VERTEX_COUNT = int(form['input_terrain_size'])
         OCTAVES = float(form['input_octaves'])
+        HEIGHT_CURVE = form['height_curve']
         
     #Delete existing vertices first
     vertices = Vertex.objects.all().values()    

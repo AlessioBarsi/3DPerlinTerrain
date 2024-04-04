@@ -1,9 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-console.log("Testing generator_js.js")
-//console.log(coords_matrix)
-
 //Setting up the scene and camera
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xADD8E6)
