@@ -14,7 +14,8 @@ def generator(request):
     SCALE = 0.1
     OCTAVES = 30
     VERTEX_COUNT = 1000
-    MAX_HEIGHT = 2
+    HEIGHT_CURVE = 'Linear'
+    
     if request.method == 'POST':
         form = request.POST
         SCALE = float(form['input_scale'])
@@ -37,8 +38,8 @@ def generator(request):
                 #Z coordinate is defined by perlin_noise + eventual function to shape the terrain height
                 newVertex = Vertex.objects.create(x_coord = 1+y,
                                                 y_coord = 1+x,
-                                                z_coord = #noise([x / math.sqrt(VERTEX_COUNT) * SCALE, y / math.sqrt(VERTEX_COUNT) * SCALE])
-                                                                + getHeightFunction('linear', x, y, math.sqrt(VERTEX_COUNT), MAX_HEIGHT) )
+                                                z_coord = noise([x / math.sqrt(VERTEX_COUNT) * SCALE, y / math.sqrt(VERTEX_COUNT) * SCALE])
+                                                                + getHeightFunction(HEIGHT_CURVE.lower(), x, y, math.sqrt(VERTEX_COUNT), MAX_HEIGHT) )
 
     context = {
         'vertices' : Vertex.objects.all().values(),
