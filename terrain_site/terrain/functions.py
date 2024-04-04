@@ -18,7 +18,7 @@ def main():
                 z = 1/distance
             else:
                 z = 0
-            print(round(distance, 2), " ", end="")
+            print(round(z, 2), " ", end="")
         print()
 
 
@@ -31,20 +31,19 @@ def getPerlinNoise(octaves, seed):
 
 def getHeightFunction(f, x, y, height, max_height):
     import math
+    max_distance = height*math.sqrt(2)
     distance = math.sqrt( (height/2 - x)**2 + (height/2 - y)**2 )
-    if f == 'linear':
-        if distance == 0:
+    #Linear function, y = x -> The terrain has a mountain shaped height
+    match f:
+        case 'linear':
+            value = (max_distance - abs(distance))/height
+            if value < 0:
+                return 0
+            else: 
+                return value
+                
+        case 'costant':
             return 0
-        else:
-            if 1/distance > max_height:
-                #return max_height
-                return 1/distance
-            else:
-                return 1/distance
-    else: 
-        return 0
-    
-
 
 if __name__ == "__main__":
     main()

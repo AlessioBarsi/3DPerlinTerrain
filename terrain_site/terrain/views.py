@@ -37,8 +37,7 @@ def generator(request):
                 #Z coordinate is defined by perlin_noise + eventual function to shape the terrain height
                 newVertex = Vertex.objects.create(x_coord = 1+y,
                                                 y_coord = 1+x,
-                                                z_coord = noise([x / math.sqrt(VERTEX_COUNT) * SCALE,
-                                                                y / math.sqrt(VERTEX_COUNT) * SCALE])
+                                                z_coord = #noise([x / math.sqrt(VERTEX_COUNT) * SCALE, y / math.sqrt(VERTEX_COUNT) * SCALE])
                                                                 + getHeightFunction('linear', x, y, math.sqrt(VERTEX_COUNT), MAX_HEIGHT) )
 
     context = {

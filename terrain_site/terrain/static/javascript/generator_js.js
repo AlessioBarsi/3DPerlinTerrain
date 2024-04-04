@@ -84,3 +84,26 @@ function animate() {
 	renderer.render( scene, camera );
 }
 animate();
+
+//Get the polygon and vertex count of the scene
+let totalVertices = 0;
+let totalFaces = 0;
+
+scene.traverse(function (object) {
+    if (object instanceof THREE.Mesh && object.geometry) {
+        const geo = object.geometry;
+        if (geo.isGeometry) {
+            totalVertices += geo.vertices.length;
+            totalFaces += geo.faces.length;
+        } else if (geo.isBufferGeometry) {
+            const positionAttribute = geo.attributes.position;
+            if (positionAttribute) {
+                totalVertices += positionAttribute.count;
+                totalFaces += geo.index ? geo.index.count / 3 : positionAttribute.count / 3;
+            }
+        }
+    }
+});
+
+console.log("Total Vertices: ", totalVertices);
+console.log("Total Faces: ", totalFaces);
