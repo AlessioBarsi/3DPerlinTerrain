@@ -59,7 +59,11 @@
           Terrain Size (cube count)<br>
           <input type="number" name="input_terrain_size" value="1000" min="100" max="3000" step="100">
           <br><br>
+          <label for="input_color_id">Terrain Color</label><br>
+          <input type="color" id="input_color_id" name="input_color" value="#00ff00"><br><br>
+
           <input type="submit" class="btn btn-info" name="input_submit" value="Generate Terrain">
+
         </div>
       </div>
     </form>
@@ -93,6 +97,8 @@
         matrix_row = [];
       {% endfor %}
 
+      //Get the color from the context
+      let terrain_color_hex = {{terrain_color}}
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
 </body>

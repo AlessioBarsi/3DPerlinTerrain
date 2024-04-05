@@ -19,7 +19,7 @@ controls.update();
 
 //Instantiating the geometry and material that each cube will have
 const cube_geometry = new THREE.BoxGeometry(1, 1, 1);
-const cube_material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube_material = new THREE.MeshBasicMaterial( { color: terrain_color_hex } );
 
 
 // Create cube outline

@@ -13,10 +13,11 @@ def generator(request):
     #Get perlin_noise and terrain settings from html form
     SCALE = 0.1
     OCTAVES = 30
-    VERTEX_COUNT = 100
+    VERTEX_COUNT = 1000
     HEIGHT_CURVE = 'Linear'
     MAX_HEIGHT = 1
     PERLIN_NOISE_ENABLED = True
+    TERRAIN_COLOR = '0x00ff00'
 
     if request.method == 'POST':
         form = request.POST
@@ -24,7 +25,6 @@ def generator(request):
         HEIGHT_CURVE = form['height_curve']
 
         #Check if the Perlin Noise has been enabled in the form
-        
         if (request.POST.get('perlin_noise_checkbox') == 'on'):
             PERLIN_NOISE_ENABLED = True
         else:
@@ -32,6 +32,9 @@ def generator(request):
         if (PERLIN_NOISE_ENABLED):
             OCTAVES = float(form['input_octaves'])
             SCALE = float(form['input_scale'])
+        
+        #Get the color string from the input form
+        TERRAIN_COLOR = '0x' + form['input_color'][1:]
 
     #Delete existing vertices first
     vertices = Vertex.objects.all().values()    
@@ -58,6 +61,7 @@ def generator(request):
 
     context = {
         'vertices' : Vertex.objects.all().values(),
+        'terrain_color': TERRAIN_COLOR,
     }
     template = loader.get_template('generator.html')
     return HttpResponse(template.render(context=context, request=request))
