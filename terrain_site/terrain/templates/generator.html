@@ -22,7 +22,7 @@
 </head>
 <body>
     
-    <!-- Form for the Perlin Noise attributes and terrain size -->
+    <!-- Form for the Perlin Noise attributes, terrain settings and buttons -->
     <form action="generator" method="POST">
       {% csrf_token %}
       <div class="row" style="border:solid 5px darkblue">
@@ -63,11 +63,12 @@
           <input type="color" id="input_color_id" name="input_color" value="#00ff00"><br><br>
 
           <input type="submit" class="btn btn-info" name="input_submit" value="Generate Terrain">
+          <input type="button" class="btn btn-primary" value="Download OBJ Model" onclick="DownloadOBJ()">
 
         </div>
       </div>
     </form>
-
+    
     <script>
       //Disable Perlin Noise forms if the checkbox isn't checked
       let disabled_forms = false

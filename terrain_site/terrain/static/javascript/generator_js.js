@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 
 //Setting up the scene and camera
 const scene = new THREE.Scene();
@@ -70,7 +71,6 @@ const vertices = new Float32Array( [
 geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 const mesh = new THREE.Mesh( geometry, material );
-
 scene.add( mesh )
 
 //Rendering the scene
@@ -104,3 +104,19 @@ scene.traverse(function (object) {
 
 console.log("Total Vertices: ", totalVertices);
 console.log("Total Faces: ", totalFaces);
+
+//OBJ Downloader function
+function DownloadOBJ() {
+    // Instantiate an exporter
+    const exporter = new OBJExporter();
+    // Convert the scene to OBJ format
+    const data = exporter.parse( scene );
+    //Download the converted OBJ data
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', 'model.obj');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
