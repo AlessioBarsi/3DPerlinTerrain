@@ -32,6 +32,8 @@
           Perlin Noise Octaves:
           <input type="number" name="input_octaves" class="form-control" value="30" min="1" max="80" step="1" id="InputOctaves">
           <br>
+          <input type="checkbox" style="margin-left: 10px" class="form-check-input" name="perlin_noise_checkbox" id="noise_checkbox_id" checked onchange="EnableDisableForms()">
+          <label style="margin-left: 20px; padding-left:10px" for="noise_checkbox_id">Enable Perlin Noise</label>
         </div>
     
         <div class="col-sm-4" style="background-color:aquamarine;">
@@ -63,6 +65,19 @@
     </form>
 
     <script>
+      //Disable Perlin Noise forms if the checkbox isn't checked
+      let disabled_forms = false
+      function EnableDisableForms(){
+        if (disabled_forms) {
+          document.getElementById('InputScale').removeAttribute('disabled')
+          document.getElementById('InputOctaves').removeAttribute('disabled')
+        } else {
+          document.getElementById('InputScale').setAttribute('disabled', '')
+          document.getElementById('InputOctaves').setAttribute('disabled', '')
+        }
+        disabled_forms = !disabled_forms
+      }
+
       //Get the coordinates from the vertex models and assign them to a matrix
       let coords_matrix = []
       //Each row of the matrix consists of one vertex
