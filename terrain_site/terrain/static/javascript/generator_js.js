@@ -120,3 +120,5 @@ function DownloadOBJ() {
     element.click();
     document.body.removeChild(element);
 }
+
+window.DownloadOBJ = DownloadOBJ;
