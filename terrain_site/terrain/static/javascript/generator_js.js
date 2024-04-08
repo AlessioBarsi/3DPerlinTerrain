@@ -27,10 +27,10 @@ const cube_material = new THREE.MeshBasicMaterial( { color: terrain_color_hex } 
 var outlineMaterial = new THREE.LineBasicMaterial({ color: 0x000000 });
 var outlineGeometry = new THREE.EdgesGeometry(cube_geometry);
 
-
-let array_cubes = []
-//Adding an array of 10 cubes
-for (let i = 0; i < coords_matrix.length; i ++) {
+if (TERRAIN_CUBE) {
+    let array_cubes = []
+    //Adding an array of 10 cubes
+    for (let i = 0; i < coords_matrix.length; i ++) {
     //Creating the cube mesh from the geometry and material
     const new_cube = new THREE.Mesh(cube_geometry, cube_material)
     //Assigning the cube position to its coordinates from the matrix
@@ -50,6 +50,8 @@ for (let i = 0; i < coords_matrix.length; i ++) {
     outline.renderOrder = 1;
     new_cube.add( outline )
 }
+}
+
 camera.position.z = 10;
 
 //Buffer Geometry code example that draws a square mesh
