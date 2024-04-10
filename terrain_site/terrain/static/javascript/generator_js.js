@@ -56,17 +56,11 @@ camera.position.z = 10;
 
 //Buffer Geometry code example that draws a square mesh
 const geometry = new THREE.BufferGeometry();
-
-// create a simple square shape. We duplicate the top left and bottom right
-// vertices because each vertex needs to appear once per triangle.
+// Triangle mesh
 const vertices = new Float32Array( [
 	-1.0, -1.0,  1.0, // v0
 	 1.0, -1.0,  1.0, // v1
 	 1.0,  1.0,  1.0, // v2
-
-	 1.0,  1.0,  1.0, // v3
-	-1.0,  1.0,  1.0, // v4
-	-1.0, -1.0,  1.0  // v5
 ] );
 
 // itemSize = 3 because there are 3 values (components) per vertex

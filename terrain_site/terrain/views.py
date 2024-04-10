@@ -13,10 +13,10 @@ def generator(request):
     #Get perlin_noise and terrain settings from html form
     SCALE = 0.1
     OCTAVES = 30
-    VERTEX_COUNT = 1000
+    VERTEX_COUNT = 100
     HEIGHT_CURVE = 'Linear'
     MAX_HEIGHT = 1
-    PERLIN_NOISE_ENABLED = True
+    PERLIN_NOISE_ENABLED = False
     TERRAIN_COLOR = '0x00ff00'
 
     if request.method == 'POST':
