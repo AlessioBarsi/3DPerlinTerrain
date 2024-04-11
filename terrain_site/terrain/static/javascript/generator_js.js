@@ -12,6 +12,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
+
 //Setting up the camera controls
 const controls = new OrbitControls( camera, renderer.domElement )
 //controls.update() must be called after any manual changes to the camera's transform
@@ -97,6 +98,9 @@ scene.traverse(function (object) {
         }
     }
 });
+
+document.getElementById("label_vertexcount").textContent = `Total vertices: ${totalVertices}`
+document.getElementById("label_facescount").textContent = `Total faces: ${totalFaces}`
 
 console.log("Total Vertices: ", totalVertices);
 console.log("Total Faces: ", totalFaces);

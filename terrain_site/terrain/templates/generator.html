@@ -21,7 +21,10 @@
     </script>
 </head>
 <body>
-    
+    <div id="overlay" >
+      <label id="label_facescount"></label><br>
+      <label id="label_vertexcount"></label>
+      </div>
     <!-- Form for the Perlin Noise attributes, terrain settings and buttons -->
     <form action="generator" method="POST">
       {% csrf_token %}
