@@ -53,16 +53,15 @@ if (TERRAIN_CUBE) {
 }
 }
 
-camera.position.z = 10;
 
 //Buffer Geometry code example that draws a square mesh
 const geometry = new THREE.BufferGeometry();
 // Triangle mesh
-const vertices = new Float32Array( [
-	-1.0, -1.0,  1.0, // v0
-	 1.0, -1.0,  1.0, // v1
-	 1.0,  1.0,  1.0, // v2
-] );
+const vertices = new Float32Array(9);
+
+vertices.set([-1.0, -1.0, 1.0], 0)
+vertices.set([1.0, -1, 1.0], 3)
+vertices.set([1.0, 1.0, 1.0], 6)
 
 // itemSize = 3 because there are 3 values (components) per vertex
 geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
@@ -70,9 +69,11 @@ const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh )
 
+camera.position.z = 5;
+camera.position.z = 25;
+camera.position.z = 50;
 //Rendering the scene
 function animate() {
-
 	requestAnimationFrame( animate );
     controls.update();
 	renderer.render( scene, camera );
