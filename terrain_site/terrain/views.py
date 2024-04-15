@@ -9,20 +9,27 @@ def index(request):
 
 def generator(request):
 
-
     #Get perlin_noise and terrain settings from html form
     SCALE = 0.1
     OCTAVES = 30
     VERTEX_COUNT = 100
     HEIGHT_CURVE = 'Linear'
     MAX_HEIGHT = 1
-    PERLIN_NOISE_ENABLED = False
+    PERLIN_NOISE_ENABLED = True
     TERRAIN_COLOR = '0x00ff00'
+    GEOMETRY_TYPE = True
 
     if request.method == 'POST':
         form = request.POST
         VERTEX_COUNT = int(form['input_terrain_size'])
         HEIGHT_CURVE = form['height_curve']
+
+        #Check which geometry to use
+        type_input = form['geometry_type']
+        if(type_input == 'Cube'):
+            GEOMETRY_TYPE = True
+        else:
+            GEOMETRY_TYPE = False
 
         #Check if the Perlin Noise has been enabled in the form
         if (request.POST.get('perlin_noise_checkbox') == 'on'):
@@ -45,6 +52,10 @@ def generator(request):
         #Generate the perlin noise object with set octaves and seed
         from .functions import getHeightFunction
 
+        #Triplicate vertex count if geometry type isn't set to cube
+        if not(GEOMETRY_TYPE):
+            VERTEX_COUNT *= 3
+
         for x in range(int(math.sqrt(VERTEX_COUNT))):
             for y in range(int(math.sqrt(VERTEX_COUNT))):
                 #Z coordinate is defined by perlin_noise + eventual function to shape the terrain height
@@ -62,6 +73,7 @@ def generator(request):
     context = {
         'vertices' : Vertex.objects.all().values(),
         'terrain_color': TERRAIN_COLOR,
+        'terrain_type': GEOMETRY_TYPE,
     }
     template = loader.get_template('generator.html')
     return HttpResponse(template.render(context=context, request=request))

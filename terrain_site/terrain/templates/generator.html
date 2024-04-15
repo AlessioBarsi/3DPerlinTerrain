@@ -56,10 +56,17 @@
           <input type="radio" id="height_logarithmic" name="height_curve" value="Logarithmic">
           <img src="{% static 'images/logarithmic.png' %}">
           <label for="height_logarithmic">Logarithmic</label>
+
+          <br>Terrain Geometry (if not set to <i>Cube</i>, terrain size count will be multiplied by three)<br>
+          <input type="radio" id="geometry_cube" name="geometry_type" value="Cube" checked>
+          <label for="geometry_cube">Cube</label>
+          <input type="radio" id="geometry_normal" name="geometry_type" value="Normal mesh">
+          <label for="geometry_normal">Normal mesh</label><br>
+
         </div>
     
         <div class="col-sm-4" style="background-color:aqua; padding-bottom: 2%;">
-          Terrain Size (cube count)<br>
+          Terrain Size<br>
           <input type="number" name="input_terrain_size" value="1000" min="100" max="3000" step="100">
           <br><br>
           <label for="input_color_id">Terrain Color</label><br>
@@ -87,6 +94,12 @@
       }
       //Global variable to check which geometry is used to render the terrain
       let TERRAIN_CUBE = false
+      {% if terrain_type == True %}
+        TERRAIN_CUBE = true
+        console.log('terrain_type is true')
+      
+      {% endif %}
+      console.log(TERRAIN_CUBE)
       //Get the coordinates from the vertex models and assign them to a matrix
       let coords_matrix = []
       //Each row of the matrix consists of one vertex
