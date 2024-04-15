@@ -2,15 +2,21 @@
 A Django web app that shows the Perlin Noise algorithm applied to the generation of a 3D terrain trough the three.js library. The 3D model of the generated terrain can be downladed in OBj format.
 
 ## Terrain customization
-* Perlin Noise: octaves and scale can be adjusted. The Perlin Noise can also be toggled on/off if desired.
+* Perlin noise: octaves and scale can be adjusted. The Perlin Noise can also be toggled on/off if desired.
 * Terrain height: the general height curve of the terrain, defined by a mathematical function
-* Terrain Geometry: the geometry used for generating the terrain. *Cube* will generate a single cube for each vertex, while *Normal mesh* will draw a mesh using triangles generated from the vertices
-* Terrain Size: Overall size of the terrain grid. The terrain is a square grid, with the size determining its total number of cubes when *Cube* is set for the terrain geometry, or the approximated number of triangles otherwise. This value is multiplied by 3 in case terrain geometry isn't set to *Cube*
-* Color: RGB color of the generated terrain mesh
+* Terrain geometry: the geometry used for generating the terrain. *Cube* will generate a single cube for each vertex, while *Normal mesh* will draw a mesh using triangles generated from the vertices
+* Terrain size: Overall size of the terrain grid. The terrain is a square grid, with the size determining its total number of cubes when *Cube* is set for the terrain geometry, or the approximated number of triangles otherwise. This value is multiplied by 3 in case terrain geometry isn't set to *Cube*
+* Terrain color: RGB color of the generated terrain mesh
 
 ## Screenshots 
 <details>
   
+![img](docs/screen1.png)
+
+![img](docs/screen2.png)
+
+![img](docs/screen3.png)
+
 </details>
 
 ## How to run the app
@@ -57,3 +63,9 @@ This app has been tested on Python 3.11.9
   python manage.py runserver
   ```
 7) Open the page http://127.0.0.1:8000/terrain/generator in your local browser
+
+## See also
+
+* [Django](https://www.djangoproject.com/)
+* [Understanding Perlin Noise](https://adrianb.io/2014/08/09/perlinnoise.html)
+* [Three.js](https://threejs.org/)
