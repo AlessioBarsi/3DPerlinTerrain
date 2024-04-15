@@ -41,19 +41,31 @@
     
         <div class="col-sm-4" style="background-color:aquamarine;">
           Height Curve<br>
-          <input type="radio" id="height_costant" name="height_curve" value="Costant">
+          <input type="radio" id="height_costant" name="height_curve" value="Costant"
+          {% if parameters.height_curve == 'Costant'%}
+          checked
+          {% endif %}>
           <img src="{% static 'images/costant.png' %}">
           <label for="height_costant">Costant</label><br>
           
-          <input type="radio" id="height_linear" name="height_curve" value="Linear" checked>
+          <input type="radio" id="height_linear" name="height_curve" value="Linear" 
+          {% if parameters.height_curve == 'Linear'%}
+          checked
+          {% endif %}>
           <img src="{% static 'images/linear.png' %}">
           <label for="height_linear">Linear</label><br>
           
-          <input type="radio" id="height_exponential" name="height_curve" value="Exponential">
+          <input type="radio" id="height_exponential" name="height_curve" value="Exponential"
+          {% if parameters.height_curve == 'Exponential'%}
+          checked
+          {% endif %}>
           <img src="{% static 'images/exponential.png' %}">
           <label for="height_exponential">Exponential</label><br>
           
-          <input type="radio" id="height_logarithmic" name="height_curve" value="Logarithmic">
+          <input type="radio" id="height_logarithmic" name="height_curve" value="Logarithmic"
+          {% if parameters.height_curve == 'Logarithmic'%}
+          checked
+          {% endif %}>
           <img src="{% static 'images/logarithmic.png' %}">
           <label for="height_logarithmic">Logarithmic</label>
 
