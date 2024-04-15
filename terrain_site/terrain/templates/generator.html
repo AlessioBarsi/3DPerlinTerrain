@@ -70,16 +70,22 @@
           <label for="height_logarithmic">Logarithmic</label>
 
           <br>Terrain Geometry (if not set to <i>Cube</i>, terrain size count will be multiplied by three)<br>
-          <input type="radio" id="geometry_cube" name="geometry_type" value="Cube" checked>
+          <input type="radio" id="geometry_cube" name="geometry_type" value="Cube" 
+          {% if terrain_type == True %}
+          checked
+          {% endif %}>
           <label for="geometry_cube">Cube</label>
-          <input type="radio" id="geometry_normal" name="geometry_type" value="Normal mesh">
+          <input type="radio" id="geometry_normal" name="geometry_type" value="Normal mesh"
+          {% if terrain_type == False %}
+          checked
+          {% endif %}>
           <label for="geometry_normal">Normal mesh</label><br>
 
         </div>
     
         <div class="col-sm-4" style="background-color:aqua; padding-bottom: 2%;">
           Terrain Size<br>
-          <input type="number" name="input_terrain_size" value="1000" min="100" max="3000" step="100">
+          <input type="number" name="input_terrain_size" value="{{ parameters.vertex_count }}" min="100" max="3000" step="100">
           <br><br>
           <label for="input_color_id">Terrain Color</label><br>
           <input type="color" id="input_color_id" name="input_color" value="#00ff00"><br><br>
@@ -108,10 +114,7 @@
       let TERRAIN_CUBE = false
       {% if terrain_type == True %}
         TERRAIN_CUBE = true
-        console.log('terrain_type is true')
-      
       {% endif %}
-      console.log(TERRAIN_CUBE)
       //Get the coordinates from the vertex models and assign them to a matrix
       let coords_matrix = []
       //Each row of the matrix consists of one vertex
@@ -127,7 +130,7 @@
         matrix_row = [];
       {% endfor %}
 
-      //Get the color from the context
+      //let terrain_color_hex = '#00ff00'
       let terrain_color_hex = {{terrain_color}}
     </script>
     <script type="module" src="{% static '/javascript/generator_js.js' %}"></script>
