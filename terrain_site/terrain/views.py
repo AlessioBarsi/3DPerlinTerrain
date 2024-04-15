@@ -70,10 +70,18 @@ def generator(request):
                                                   z_coord = z_value
                                                           + getHeightFunction(HEIGHT_CURVE.lower(), x, y, math.sqrt(VERTEX_COUNT), MAX_HEIGHT) )
 
+    #Pass all the parameters to a dictionary for the context
+    param_dict = { 
+                'scale':SCALE, 'octaves':int(OCTAVES),
+                'vertex_count':int(VERTEX_COUNT),
+                'height_curve':HEIGHT_CURVE, 'enable_noise':PERLIN_NOISE_ENABLED,
+                }
+    
     context = {
         'vertices' : Vertex.objects.all().values(),
         'terrain_color': TERRAIN_COLOR,
         'terrain_type': GEOMETRY_TYPE,
+        'parameters': param_dict,
     }
     template = loader.get_template('generator.html')
     return HttpResponse(template.render(context=context, request=request))

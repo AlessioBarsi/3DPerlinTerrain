@@ -31,9 +31,9 @@
       <div class="row" style="border:solid 5px darkblue">
         <div class="col-sm-4" style="background-color:cornflowerblue; color:white; padding-left: 1.5%;">
           Perlin Noise Settings
-          <input type="number" name="input_scale" class="form-control" value="0.1" min="0.1" width="200" max="10" step="any" id="InputScale">
+          <input type="number" name="input_scale" class="form-control" value="{{ parameters.scale }}" min="0.1" width="200" max="10" step="any" id="InputScale">
           Perlin Noise Octaves:
-          <input type="number" name="input_octaves" class="form-control" value="30" min="1" max="80" step="1" id="InputOctaves">
+          <input type="number" name="input_octaves" class="form-control" value="{{ parameters.octaves }}" min="1" max="80" step="1" id="InputOctaves">
           <br>
           <input type="checkbox" style="margin-left: 10px" class="form-check-input" name="perlin_noise_checkbox" id="noise_checkbox_id" checked onchange="EnableDisableForms()">
           <label style="margin-left: 20px; padding-left:10px" for="noise_checkbox_id">Enable Perlin Noise</label>
